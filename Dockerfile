@@ -19,14 +19,15 @@ RUN set -x \
 	&& apt-get purge -y --auto-remove ca-certificates wget
 
 # make the "en_US.UTF-8" locale so postgres will be utf-8 enabled by default
+#-------------------------- CODIFICACION ORIGINAL --------------------------------------
 #RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
 #	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 #ENV LANG en_US.utf8
-
+#-------------------------- CAMBIO DE CODIFICACION -------------------------------------
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
 	&& localedef -i es_AR -c -f UTF-8 -A /usr/share/locale/locale.alias es_AR.UTF-8
 ENV LANG es_AR.utf8
-
+#-------------------------- FIN CAMBIO DE CODIFICACION ---------------------------------
 
 RUN mkdir /docker-entrypoint-initdb.d
 
